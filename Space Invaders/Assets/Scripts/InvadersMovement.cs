@@ -38,11 +38,21 @@ public class InvadersMovement : MonoBehaviour {
 
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnDestroy()
     {
-        if(other.tag == "bullet") {
-
-            Destroy(rb2d);
+        Debug.Log("Invader Destroyed");
+        if (CompareTag("Octopus"))
+        {
+            ScoreManager.AddScore(10);
+        }
+        else if (CompareTag("Crab"))
+        {
+            ScoreManager.AddScore(20);
+        }
+        else if (CompareTag("Squid"))
+        {
+            ScoreManager.AddScore(40);
         }
     }
+
 }
