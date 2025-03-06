@@ -1,65 +1,73 @@
 using UnityEngine;
 
-public class InvadersMovement : MonoBehaviour {
-
+public class InvadersMovement : MonoBehaviour
+{
     private Rigidbody2D rb2d;
     private float timer = 0.0f;
     private float waitTime = 2.0f;
-    private int state = 0;
-    private float x;
-    private float speed = 2.0f;
-    private float stepDown = 0.1f; // Distância que os invaders descem
-    private float minY = -1.5f; // Limite inferior para não descer indefinidamente
-    private bool firstMove = true; // Controle para a primeira iteração
+    private float stepDown = 0.1f;
+    private float minY = -1.5f;
+    private bool firstMove = true;
+    [SerializeField] private static float speed = 2.0f;
 
-    void ChangeState() {
+    [SerializeField] private GameObject projectilePrefab; // Prefab do projétil
+    private static float shootTimer = 0.0f; // Tempo acumulado para tiros
+    private static float shootInterval = 1.5f; // Intervalo entre tentativas de tiro
+
+    void ChangeState()
+    {
         var vel = rb2d.linearVelocity;
         vel.x *= -1;
         rb2d.linearVelocity = vel;
 
-        // Faz os invaders descerem
         Vector3 newPosition = transform.position;
         newPosition.y -= stepDown;
-        if (newPosition.y > minY) // Garante que não desçam infinitamente
+        if (newPosition.y > minY)
             transform.position = newPosition;
 
-        // Se for a primeira troca de direção, restauramos o tempo normal
-        if (firstMove){
-            waitTime *= 2; // Retorna ao tempo normal após a primeira inversão
+        if (firstMove)
+        {
+            waitTime *= 2;
             firstMove = false;
         }
     }
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start() {
-
+    void Start()
+    {
         rb2d = GetComponent<Rigidbody2D>();
-        x = transform.position.x;
 
         var vel = rb2d.linearVelocity;
         vel.x = speed;
         rb2d.linearVelocity = vel;
 
-        // Reduz o tempo da primeira iteração
         waitTime /= 2;
-        
     }
 
-    // Update is called once per frame
-    void Update() {
-
+    void Update()
+    {
         timer += Time.deltaTime;
+        shootTimer += Time.deltaTime;
+
         if (timer >= waitTime)
         {
             ChangeState();
             timer = 0.0f;
         }
 
+        // Verifica se é hora de um invader atirar
+        if (shootTimer >= shootInterval)
+        {
+            TryToShoot();
+            shootTimer = 0.0f; // Reinicia o tempo de tiro
+        }
     }
 
-    private void OnDestroy()
+    void OnDestroy()
     {
+        speed += 0.2f;
+
         Debug.Log("Invader Destroyed");
+
         if (CompareTag("Octopus"))
         {
             ScoreManager.AddScore(10);
@@ -72,6 +80,44 @@ public class InvadersMovement : MonoBehaviour {
         {
             ScoreManager.AddScore(40);
         }
+
+        InvadersMovement[] allInvaders = FindObjectsOfType<InvadersMovement>();
+        foreach (InvadersMovement invader in allInvaders)
+        {
+            invader.UpdateSpeed();
+        }
     }
 
+    public void UpdateSpeed()
+    {
+        if (rb2d != null)
+        {
+            var vel = rb2d.linearVelocity;
+            vel.x = Mathf.Sign(vel.x) * speed;
+            rb2d.linearVelocity = vel;
+        }
+    }
+
+    void TryToShoot()
+    {
+        // Verifica se já existe um projétil na cena
+        if (GameObject.FindWithTag("Laser") == null)
+        {
+            InvadersMovement[] allInvaders = FindObjectsOfType<InvadersMovement>();
+
+            if (allInvaders.Length > 0)
+            {
+                // Escolhe aleatoriamente um invader para atirar
+                int randomIndex = Random.Range(0, allInvaders.Length);
+                InvadersMovement shooter = allInvaders[randomIndex];
+
+                if (shooter != null && shooter.projectilePrefab != null)
+                {
+                    // Instancia o projétil na posição do invader
+                    GameObject projectile = Instantiate(shooter.projectilePrefab, shooter.transform.position, Quaternion.identity);
+                    projectile.tag = "Laser"; // Marca o projétil com uma tag
+                }
+            }
+        }
+    }
 }

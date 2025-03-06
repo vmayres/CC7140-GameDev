@@ -8,6 +8,7 @@ TagManager:
   - Octopus
   - Crab
   - Squid
+  - Laser
   layers:
   - Default
   - TransparentFX

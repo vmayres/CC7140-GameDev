@@ -1,31 +1,48 @@
 using UnityEngine;
+using UnityEngine.SceneManagement; // Importa SceneManager para mudar de cena
 
 public class PlayerControl : MonoBehaviour
 {
+    public static PlayerControl instance;
 
     [SerializeField] float playerMoveSpeed = 10f;
+    [SerializeField] private int playerHealth;
 
     public Transform projectileTransform;
     public GameObject prefab;
 
-    void Start() {
+    public static void LostHealth()
+    {
+        if (instance != null)
+        {
+            instance.playerHealth -= 1;
 
+            // Se a vida chegar a 0, vai para a cena de Game Over
+            if (instance.playerHealth <= 0)
+            {
+                SceneManager.LoadScene("GameOver"); // Nome da cena de Game Over
+            }
+        }
     }
 
-    
-    void Update() {
+    private void Awake()
+    {
+        instance = this;
+        instance.playerHealth = 3; // Jogador começa com 3 vidas
+    }
 
-        float translation = Input.GetAxis("Horizontal") * playerMoveSpeed;
+    private void Update()
+    {
 
-        // Make it move 10 meters per second instead of 10 meters per frame...
-        translation *= Time.deltaTime;
+        float translation = Input.GetAxis("Horizontal") * playerMoveSpeed * Time.deltaTime;
 
-        transform.Translate(translation, 0, 0); // Translacao no eixo X
-        if (transform.position.x < -9.5f) 
+        transform.Translate(translation, 0, 0);
+
+        if (transform.position.x < -9.5f)
         {
             transform.position = new Vector3(-9.5f, transform.position.y, transform.position.z);
         }
-        if (transform.position.x > 9.5f) 
+        if (transform.position.x > 9.5f)
         {
             transform.position = new Vector3(9.5f, transform.position.y, transform.position.z);
         }
@@ -35,4 +52,5 @@ public class PlayerControl : MonoBehaviour
             Instantiate(prefab, projectileTransform.position, transform.rotation);
         }
     }
+
 }
