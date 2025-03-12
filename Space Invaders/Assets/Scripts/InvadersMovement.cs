@@ -1,109 +1,39 @@
 using UnityEngine;
+using System.Collections;
 
 public class InvadersMovement : MonoBehaviour
 {
     private Rigidbody2D rb2d;
-    private float timer = 0.0f;
-    private float waitTime = 2.0f;
-    private float stepDown = 0.1f;
-    private float minY = -1.5f;
-    private bool firstMove = true;
-    [SerializeField] private static float speed = 2.0f;
+    private static InvadersMovement[] allInvaders; // Para controlar os invaders no cenário
 
     [SerializeField] private GameObject projectilePrefab; // Prefab do projétil
-    private static float shootTimer = 0.0f; // Tempo acumulado para tiros
-    private static float shootInterval = 1.5f; // Intervalo entre tentativas de tiro
-
-    void ChangeState()
-    {
-        var vel = rb2d.linearVelocity;
-        vel.x *= -1;
-        rb2d.linearVelocity = vel;
-
-        Vector3 newPosition = transform.position;
-        newPosition.y -= stepDown;
-        if (newPosition.y > minY)
-            transform.position = newPosition;
-
-        if (firstMove)
-        {
-            waitTime *= 2;
-            firstMove = false;
-        }
-    }
+    private static float shootTimer = 0.0f; // Tempo acumulado para disparos
+    private static float shootInterval = 1.5f; // Intervalo entre tentativas de disparo
 
     void Start()
     {
+        // Obtém o Rigidbody2D do próprio invader (GameObject filho)
         rb2d = GetComponent<Rigidbody2D>();
-
-        var vel = rb2d.linearVelocity;
-        vel.x = speed;
-        rb2d.linearVelocity = vel;
-
-        waitTime /= 2;
     }
 
     void Update()
     {
-        timer += Time.deltaTime;
-        shootTimer += Time.deltaTime;
-
-        if (timer >= waitTime)
-        {
-            ChangeState();
-            timer = 0.0f;
-        }
-
-        // Verifica se é hora de um invader atirar
-        if (shootTimer >= shootInterval)
-        {
-            TryToShoot();
-            shootTimer = 0.0f; // Reinicia o tempo de tiro
-        }
+        TryToShoot();
     }
 
+    // Função chamada quando o invader é destruído
     void OnDestroy()
     {
-        speed += 0.2f;
-
         Debug.Log("Invader Destroyed");
-
-        if (CompareTag("Octopus"))
-        {
-            ScoreManager.AddScore(10);
-        }
-        else if (CompareTag("Crab"))
-        {
-            ScoreManager.AddScore(20);
-        }
-        else if (CompareTag("Squid"))
-        {
-            ScoreManager.AddScore(40);
-        }
-
-        InvadersMovement[] allInvaders = FindObjectsOfType<InvadersMovement>();
-        foreach (InvadersMovement invader in allInvaders)
-        {
-            invader.UpdateSpeed();
-        }
     }
 
-    public void UpdateSpeed()
-    {
-        if (rb2d != null)
-        {
-            var vel = rb2d.linearVelocity;
-            vel.x = Mathf.Sign(vel.x) * speed;
-            rb2d.linearVelocity = vel;
-        }
-    }
-
+    // Função para tentar disparar um projétil
     void TryToShoot()
     {
         // Verifica se já existe um projétil na cena
-        if (GameObject.FindWithTag("Laser") == null)
+        if (GameObject.FindWithTag("Enemy Projectile") == null)
         {
-            InvadersMovement[] allInvaders = FindObjectsOfType<InvadersMovement>();
+            allInvaders = FindObjectsOfType<InvadersMovement>();
 
             if (allInvaders.Length > 0)
             {
@@ -115,9 +45,17 @@ public class InvadersMovement : MonoBehaviour
                 {
                     // Instancia o projétil na posição do invader
                     GameObject projectile = Instantiate(shooter.projectilePrefab, shooter.transform.position, Quaternion.identity);
-                    projectile.tag = "Laser"; // Marca o projétil com uma tag
+
+                    // Garantir que o projétil seja gerado no valor z correto (exemplo: z = 1 ou z = 2, conforme necessário)
+                    Vector3 projectilePosition = projectile.transform.position;
+                    projectilePosition.z = 1f; // Ajuste conforme necessário
+                    projectile.transform.position = projectilePosition;
+
+                    // Marca o projétil com a tag correta
+                    projectile.tag = "Enemy Projectile";
                 }
             }
         }
     }
+
 }

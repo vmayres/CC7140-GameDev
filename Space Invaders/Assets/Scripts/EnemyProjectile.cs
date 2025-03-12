@@ -1,8 +1,8 @@
 using UnityEngine;
 
-public class Shotting : MonoBehaviour
+public class EnemyProjectile : MonoBehaviour
 {
-    public float projectileSpeed = 10f;
+    public float projectileSpeed = 12f;
     private Rigidbody2D rb2d;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -15,19 +15,16 @@ public class Shotting : MonoBehaviour
     void Update()
     {
         rb2d.linearVelocityY = -projectileSpeed; // Alterado para mover para baixo
+        if (rb2d.transform.position.y < -14f)
+        {
+            Destroy(gameObject);
+        }
     }
 
     private void OnCollisionEnter2D(Collision2D other)
     {
-        if (CompareTag("Player"))
-        {
-            Destroy(other.gameObject);
-            PlayerControl.LostHealth();
-        }
-    }
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
+        Destroy(other.gameObject);
         Destroy(gameObject);
     }
+
 }

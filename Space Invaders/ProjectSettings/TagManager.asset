@@ -8,7 +8,8 @@ TagManager:
   - Octopus
   - Crab
   - Squid
-  - Laser
+  - Enemy Projectile
+  - Mothership
   layers:
   - Default
   - TransparentFX
