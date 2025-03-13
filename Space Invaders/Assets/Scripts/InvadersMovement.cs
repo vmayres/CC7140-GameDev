@@ -6,7 +6,8 @@ public class InvadersMovement : MonoBehaviour
     private Rigidbody2D rb2d;
     private static InvadersMovement[] allInvaders; // Para controlar os invaders no cenário
 
-    [SerializeField] private GameObject projectilePrefab; // Prefab do projétil
+    [SerializeField] public Transform projectileTransform;
+    [SerializeField] public GameObject projectilePrefab; // Prefab do projétil
     private static float shootTimer = 0.0f; // Tempo acumulado para disparos
     private static float shootInterval = 1.5f; // Intervalo entre tentativas de disparo
 

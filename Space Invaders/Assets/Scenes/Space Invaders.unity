@@ -317,6 +317,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8935c33313f5fa84bb2310801dfaaed0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  projectileTransform: {fileID: 15589289}
   projectilePrefab: {fileID: 1499181326040196913, guid: f35806ee9a71ebc4aba0142966ea70bc, type: 3}
 --- !u!1 &54317784
 GameObject:
@@ -595,6 +596,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8935c33313f5fa84bb2310801dfaaed0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  projectileTransform: {fileID: 98878053}
   projectilePrefab: {fileID: 1499181326040196913, guid: f35806ee9a71ebc4aba0142966ea70bc, type: 3}
 --- !u!1 &120265199
 GameObject:
@@ -794,6 +796,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8935c33313f5fa84bb2310801dfaaed0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  projectileTransform: {fileID: 120265200}
   projectilePrefab: {fileID: 1499181326040196913, guid: f35806ee9a71ebc4aba0142966ea70bc, type: 3}
 --- !u!1 &154581305
 GameObject:
@@ -993,6 +996,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8935c33313f5fa84bb2310801dfaaed0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  projectileTransform: {fileID: 154581306}
   projectilePrefab: {fileID: 1499181326040196913, guid: f35806ee9a71ebc4aba0142966ea70bc, type: 3}
 --- !u!1 &221240529
 GameObject:
@@ -1192,6 +1196,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8935c33313f5fa84bb2310801dfaaed0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  projectileTransform: {fileID: 221240530}
   projectilePrefab: {fileID: 1499181326040196913, guid: f35806ee9a71ebc4aba0142966ea70bc, type: 3}
 --- !u!1 &258056970
 GameObject:
@@ -1391,6 +1396,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8935c33313f5fa84bb2310801dfaaed0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  projectileTransform: {fileID: 258056971}
   projectilePrefab: {fileID: 1499181326040196913, guid: f35806ee9a71ebc4aba0142966ea70bc, type: 3}
 --- !u!1 &354220792
 GameObject:
@@ -1590,6 +1596,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8935c33313f5fa84bb2310801dfaaed0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  projectileTransform: {fileID: 354220793}
   projectilePrefab: {fileID: 1499181326040196913, guid: f35806ee9a71ebc4aba0142966ea70bc, type: 3}
 --- !u!1 &379771259
 GameObject:
@@ -1789,6 +1796,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8935c33313f5fa84bb2310801dfaaed0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  projectileTransform: {fileID: 379771260}
   projectilePrefab: {fileID: 1499181326040196913, guid: f35806ee9a71ebc4aba0142966ea70bc, type: 3}
 --- !u!1 &414095410
 GameObject:
@@ -1988,6 +1996,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8935c33313f5fa84bb2310801dfaaed0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  projectileTransform: {fileID: 414095411}
   projectilePrefab: {fileID: 1499181326040196913, guid: f35806ee9a71ebc4aba0142966ea70bc, type: 3}
 --- !u!1 &445189793
 GameObject:
@@ -2187,6 +2196,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8935c33313f5fa84bb2310801dfaaed0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  projectileTransform: {fileID: 445189794}
   projectilePrefab: {fileID: 1499181326040196913, guid: f35806ee9a71ebc4aba0142966ea70bc, type: 3}
 --- !u!1 &481110274
 GameObject:
@@ -2386,6 +2396,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8935c33313f5fa84bb2310801dfaaed0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  projectileTransform: {fileID: 481110275}
   projectilePrefab: {fileID: 1499181326040196913, guid: f35806ee9a71ebc4aba0142966ea70bc, type: 3}
 --- !u!1 &494127958
 GameObject:
@@ -2656,6 +2667,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8935c33313f5fa84bb2310801dfaaed0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  projectileTransform: {fileID: 544021518}
   projectilePrefab: {fileID: 1499181326040196913, guid: f35806ee9a71ebc4aba0142966ea70bc, type: 3}
 --- !u!1 &640324029
 GameObject:
@@ -2989,6 +3001,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8935c33313f5fa84bb2310801dfaaed0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  projectileTransform: {fileID: 661112870}
   projectilePrefab: {fileID: 1499181326040196913, guid: f35806ee9a71ebc4aba0142966ea70bc, type: 3}
 --- !u!1 &676891059
 GameObject:
@@ -3188,6 +3201,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8935c33313f5fa84bb2310801dfaaed0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  projectileTransform: {fileID: 676891060}
   projectilePrefab: {fileID: 1499181326040196913, guid: f35806ee9a71ebc4aba0142966ea70bc, type: 3}
 --- !u!1 &700485867
 GameObject:
@@ -3703,6 +3717,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8935c33313f5fa84bb2310801dfaaed0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  projectileTransform: {fileID: 822293470}
   projectilePrefab: {fileID: 1499181326040196913, guid: f35806ee9a71ebc4aba0142966ea70bc, type: 3}
 --- !u!1 &844014797
 GameObject:
@@ -3902,6 +3917,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8935c33313f5fa84bb2310801dfaaed0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  projectileTransform: {fileID: 844014798}
   projectilePrefab: {fileID: 1499181326040196913, guid: f35806ee9a71ebc4aba0142966ea70bc, type: 3}
 --- !u!1 &850745605
 GameObject:
@@ -4219,6 +4235,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8935c33313f5fa84bb2310801dfaaed0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  projectileTransform: {fileID: 910752184}
   projectilePrefab: {fileID: 1499181326040196913, guid: f35806ee9a71ebc4aba0142966ea70bc, type: 3}
 --- !u!1 &964606620
 GameObject:
@@ -4418,6 +4435,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8935c33313f5fa84bb2310801dfaaed0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  projectileTransform: {fileID: 964606621}
   projectilePrefab: {fileID: 1499181326040196913, guid: f35806ee9a71ebc4aba0142966ea70bc, type: 3}
 --- !u!1 &1041386690
 GameObject:
@@ -4648,6 +4666,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8935c33313f5fa84bb2310801dfaaed0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  projectileTransform: {fileID: 1056370354}
   projectilePrefab: {fileID: 1499181326040196913, guid: f35806ee9a71ebc4aba0142966ea70bc, type: 3}
 --- !u!1 &1061297032
 GameObject:
@@ -4847,6 +4866,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8935c33313f5fa84bb2310801dfaaed0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  projectileTransform: {fileID: 1061297033}
   projectilePrefab: {fileID: 1499181326040196913, guid: f35806ee9a71ebc4aba0142966ea70bc, type: 3}
 --- !u!1 &1156053549
 GameObject:
@@ -5283,6 +5303,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8935c33313f5fa84bb2310801dfaaed0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  projectileTransform: {fileID: 1218186860}
   projectilePrefab: {fileID: 1499181326040196913, guid: f35806ee9a71ebc4aba0142966ea70bc, type: 3}
 --- !u!1 &1234783777
 GameObject:
@@ -5482,6 +5503,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8935c33313f5fa84bb2310801dfaaed0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  projectileTransform: {fileID: 1234783778}
   projectilePrefab: {fileID: 1499181326040196913, guid: f35806ee9a71ebc4aba0142966ea70bc, type: 3}
 --- !u!1 &1246662978
 GameObject:
@@ -5681,6 +5703,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8935c33313f5fa84bb2310801dfaaed0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  projectileTransform: {fileID: 1246662979}
   projectilePrefab: {fileID: 1499181326040196913, guid: f35806ee9a71ebc4aba0142966ea70bc, type: 3}
 --- !u!1 &1260312683
 GameObject:
@@ -5880,6 +5903,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8935c33313f5fa84bb2310801dfaaed0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  projectileTransform: {fileID: 1260312684}
   projectilePrefab: {fileID: 1499181326040196913, guid: f35806ee9a71ebc4aba0142966ea70bc, type: 3}
 --- !u!1 &1274521970
 GameObject:
@@ -6079,6 +6103,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8935c33313f5fa84bb2310801dfaaed0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  projectileTransform: {fileID: 1274521971}
   projectilePrefab: {fileID: 1499181326040196913, guid: f35806ee9a71ebc4aba0142966ea70bc, type: 3}
 --- !u!1 &1294019489
 GameObject:
@@ -6278,6 +6303,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8935c33313f5fa84bb2310801dfaaed0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  projectileTransform: {fileID: 1294019490}
   projectilePrefab: {fileID: 1499181326040196913, guid: f35806ee9a71ebc4aba0142966ea70bc, type: 3}
 --- !u!1 &1361301949
 GameObject:
@@ -6477,6 +6503,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8935c33313f5fa84bb2310801dfaaed0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  projectileTransform: {fileID: 1361301950}
   projectilePrefab: {fileID: 1499181326040196913, guid: f35806ee9a71ebc4aba0142966ea70bc, type: 3}
 --- !u!1 &1369745369
 GameObject:
@@ -6676,6 +6703,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8935c33313f5fa84bb2310801dfaaed0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  projectileTransform: {fileID: 1369745370}
   projectilePrefab: {fileID: 1499181326040196913, guid: f35806ee9a71ebc4aba0142966ea70bc, type: 3}
 --- !u!1 &1378796957
 GameObject:
@@ -7156,6 +7184,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8935c33313f5fa84bb2310801dfaaed0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  projectileTransform: {fileID: 1442695818}
   projectilePrefab: {fileID: 1499181326040196913, guid: f35806ee9a71ebc4aba0142966ea70bc, type: 3}
 --- !u!1 &1555555497
 GameObject:
@@ -7355,6 +7384,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8935c33313f5fa84bb2310801dfaaed0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  projectileTransform: {fileID: 1555555498}
   projectilePrefab: {fileID: 1499181326040196913, guid: f35806ee9a71ebc4aba0142966ea70bc, type: 3}
 --- !u!1 &1556723501
 GameObject:
@@ -7688,6 +7718,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8935c33313f5fa84bb2310801dfaaed0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  projectileTransform: {fileID: 1590453703}
   projectilePrefab: {fileID: 1499181326040196913, guid: f35806ee9a71ebc4aba0142966ea70bc, type: 3}
 --- !u!1 &1593915347
 GameObject:
@@ -7887,6 +7918,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8935c33313f5fa84bb2310801dfaaed0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  projectileTransform: {fileID: 1593915348}
   projectilePrefab: {fileID: 1499181326040196913, guid: f35806ee9a71ebc4aba0142966ea70bc, type: 3}
 --- !u!1 &1648148405
 GameObject:
@@ -8086,6 +8118,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8935c33313f5fa84bb2310801dfaaed0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  projectileTransform: {fileID: 1648148406}
   projectilePrefab: {fileID: 1499181326040196913, guid: f35806ee9a71ebc4aba0142966ea70bc, type: 3}
 --- !u!1 &1824753266
 GameObject:
@@ -8285,6 +8318,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8935c33313f5fa84bb2310801dfaaed0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  projectileTransform: {fileID: 1824753267}
   projectilePrefab: {fileID: 1499181326040196913, guid: f35806ee9a71ebc4aba0142966ea70bc, type: 3}
 --- !u!1 &1872213778
 GameObject:
@@ -8484,6 +8518,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8935c33313f5fa84bb2310801dfaaed0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  projectileTransform: {fileID: 1872213779}
   projectilePrefab: {fileID: 1499181326040196913, guid: f35806ee9a71ebc4aba0142966ea70bc, type: 3}
 --- !u!1 &1913655349
 GameObject:
@@ -8683,6 +8718,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8935c33313f5fa84bb2310801dfaaed0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  projectileTransform: {fileID: 1913655350}
   projectilePrefab: {fileID: 1499181326040196913, guid: f35806ee9a71ebc4aba0142966ea70bc, type: 3}
 --- !u!1 &1995727960
 GameObject:
@@ -9006,6 +9042,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8935c33313f5fa84bb2310801dfaaed0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  projectileTransform: {fileID: 2102940453}
   projectilePrefab: {fileID: 1499181326040196913, guid: f35806ee9a71ebc4aba0142966ea70bc, type: 3}
 --- !u!1 &2108630272
 GameObject:
@@ -9205,6 +9242,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8935c33313f5fa84bb2310801dfaaed0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  projectileTransform: {fileID: 2108630273}
   projectilePrefab: {fileID: 1499181326040196913, guid: f35806ee9a71ebc4aba0142966ea70bc, type: 3}
 --- !u!1 &2115336254
 GameObject:
@@ -9404,6 +9442,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8935c33313f5fa84bb2310801dfaaed0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  projectileTransform: {fileID: 2115336255}
   projectilePrefab: {fileID: 1499181326040196913, guid: f35806ee9a71ebc4aba0142966ea70bc, type: 3}
 --- !u!1 &2141602253
 GameObject:
@@ -9603,6 +9642,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8935c33313f5fa84bb2310801dfaaed0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  projectileTransform: {fileID: 2141602254}
   projectilePrefab: {fileID: 1499181326040196913, guid: f35806ee9a71ebc4aba0142966ea70bc, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:

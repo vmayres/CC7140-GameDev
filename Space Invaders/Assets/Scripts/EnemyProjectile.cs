@@ -23,8 +23,12 @@ public class EnemyProjectile : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D other)
     {
-        Destroy(other.gameObject);
-        Destroy(gameObject);
+        if (other.gameObject.CompareTag("Player"))
+        {
+            Destroy(gameObject);
+            ScoreManager.LostLife();
+
+        }
     }
 
 }
