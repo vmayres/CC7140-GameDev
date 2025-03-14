@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class PlayerProjectile : MonoBehaviour
 {
-    public float projectileSpeed = 15f;
+    public float projectileSpeed = 25f;
     private Rigidbody2D rb2d;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -21,7 +21,7 @@ public class PlayerProjectile : MonoBehaviour
         }
     }
 
-    private void OnCollisionEnter2D(Collision2D other)
+    private void OnTriggerEnter2D(Collider2D other)
     {
 
         // Marca a pontuação conforme a tag do invader

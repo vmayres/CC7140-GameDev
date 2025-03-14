@@ -1,62 +1,132 @@
 using UnityEngine;
-using System.Collections;
 
-public class InvadersMovement : MonoBehaviour
+public class InsvaderMovement : MonoBehaviour
 {
-    private Rigidbody2D rb2d;
-    private static InvadersMovement[] allInvaders; // Para controlar os invaders no cenário
+    [Header("Insvaders")]
+    public GameObject squidPrefab;
+    public GameObject crabPrefab;
+    public GameObject octopusPrefab;
+    public AnimationCurve speedCurve;
+    private Vector3 direction = Vector3.right;
+    private Vector3 initialPosition;
 
-    [SerializeField] public Transform projectileTransform;
-    [SerializeField] public GameObject projectilePrefab; // Prefab do projétil
-    private static float shootTimer = 0.0f; // Tempo acumulado para disparos
-    private static float shootInterval = 1.5f; // Intervalo entre tentativas de disparo
+    [Header("Grid Configurations")]
+    public int columns = 7;
+    public float spacing = 2f;
 
-    void Start()
+    [Header("Missiles")]
+    public GameObject projectilePrefab;
+    public float missileSpawnRate = 1f;
+
+    [Header("Invaders")]
+    public float baseSpeed = 4f; // Aumentando a velocidade inicial em 4 vezes
+
+    private void Awake()
     {
-        // Obtém o Rigidbody2D do próprio invader (GameObject filho)
-        rb2d = GetComponent<Rigidbody2D>();
+        initialPosition = transform.position;
+        CreateInvaderGrid();
     }
 
-    void Update()
+    private void Start()
     {
-        TryToShoot();
+        InvokeRepeating(nameof(TryToShoot), missileSpawnRate, missileSpawnRate);
     }
 
-    // Função chamada quando o invader é destruído
-    void OnDestroy()
+    private void CreateInvaderGrid()
     {
-        Debug.Log("Invader Destroyed");
-    }
+        GameObject[] prefabs = { squidPrefab, crabPrefab, octopusPrefab};
+        int[] rowCounts = { 1, 2, 2 }; // Quantidade de linhas para cada tipo
 
-    // Função para tentar disparar um projétil
-    void TryToShoot()
-    {
-        // Verifica se já existe um projétil na cena
-        if (GameObject.FindWithTag("Enemy Projectile") == null)
+        int rowIndex = 0;
+        for (int i = 0; i < rowCounts.Length; i++)
         {
-            allInvaders = FindObjectsOfType<InvadersMovement>();
-
-            if (allInvaders.Length > 0)
+            for (int j = 0; j < rowCounts[i]; j++)
             {
-                // Escolhe aleatoriamente um invader para atirar
-                int randomIndex = Random.Range(0, allInvaders.Length);
-                InvadersMovement shooter = allInvaders[randomIndex];
-
-                if (shooter != null && shooter.projectilePrefab != null)
+                Vector3 rowPosition = new Vector3(-spacing * (columns - 1) * 0.5f, 7f - (spacing * rowIndex), 0f);
+                for (int k = 0; k < columns; k++)
                 {
-                    // Instancia o projétil na posição do invader
-                    GameObject projectile = Instantiate(shooter.projectilePrefab, shooter.transform.position, Quaternion.identity);
-
-                    // Garantir que o projétil seja gerado no valor z correto (exemplo: z = 1 ou z = 2, conforme necessário)
-                    Vector3 projectilePosition = projectile.transform.position;
-                    projectilePosition.z = 1f; // Ajuste conforme necessário
-                    projectile.transform.position = projectilePosition;
-
-                    // Marca o projétil com a tag correta
-                    projectile.tag = "Enemy Projectile";
+                    GameObject invader = Instantiate(prefabs[i], transform);
+                    invader.transform.localPosition = rowPosition + new Vector3(spacing * k, 0f, 0f);
                 }
+                rowIndex++;
             }
         }
     }
 
+    private void Update()
+    {
+        int aliveCount = GetAliveCount();
+        float speedMultiplier = 1f + ((columns * 3 - aliveCount) * 0.05f); // Aumenta a velocidade conforme os invasores são eliminados
+        float speed = baseSpeed * speedMultiplier * Time.deltaTime;
+        transform.position += speed * direction;
+
+        foreach (Transform invader in transform)
+        {
+            if (!invader.gameObject.activeInHierarchy) continue;
+
+            if (invader.position.y <= -13f)
+            {
+                UnityEngine.SceneManagement.SceneManager.LoadScene("GameOver");
+            }
+
+            if ((direction == Vector3.right && invader.position.x >= 13f) ||
+                (direction == Vector3.left && invader.position.x <= -14f))
+            {
+                AdvanceRow();
+                break;
+            }
+        }
+    }
+
+    private void AdvanceRow()
+    {
+        direction = new Vector3(-direction.x, 0f, 0f);
+        transform.position += Vector3.down * spacing;
+    }
+
+    public void TryToShoot()
+    {
+        Transform[] aliveInvaders = GetAliveInvaders();
+        if (aliveInvaders.Length > 0)
+        {
+            int randomIndex = Random.Range(0, aliveInvaders.Length);
+            Transform shooter = aliveInvaders[randomIndex];
+
+            if (shooter != null && projectilePrefab != null)
+            {
+                GameObject projectile = Instantiate(projectilePrefab, shooter.position, Quaternion.identity);
+                projectile.transform.position = new Vector3(projectile.transform.position.x, projectile.transform.position.y, 1f);
+                projectile.tag = "Enemy Projectile";
+            }
+        }
+    }
+
+    private Transform[] GetAliveInvaders()
+    {
+        Transform[] invaders = new Transform[transform.childCount];
+        int index = 0;
+        foreach (Transform invader in transform)
+        {
+            if (invader.gameObject.activeInHierarchy)
+            {
+                invaders[index] = invader;
+                index++;
+            }
+        }
+        System.Array.Resize(ref invaders, index);
+        return invaders;
+    }
+
+    public int GetAliveCount()
+    {
+        int count = 0;
+        foreach (Transform invader in transform)
+        {
+            if (invader.gameObject.activeSelf)
+            {
+                count++;
+            }
+        }
+        return count;
+    }
 }
