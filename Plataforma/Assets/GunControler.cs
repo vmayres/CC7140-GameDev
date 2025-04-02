@@ -8,6 +8,7 @@ public class GunControler : MonoBehaviour
     [SerializeField] private Transform gun;
     [SerializeField] private Animator gun_anim;
     [SerializeField] private float gun_distance = 1.0f;
+    
 
     private bool gunFacingRight = true;
 
