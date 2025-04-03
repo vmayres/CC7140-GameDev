@@ -3,6 +3,9 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
 
+    public Rigidbody2D rbd2;
+    private Animator anim;
+
     [SerializeField] private LayerMask whatIsObstacle;
     [SerializeField] private LayerMask whatIsPlayer;
     [SerializeField] private Transform player; 
@@ -13,8 +16,20 @@ public class Enemy : MonoBehaviour
 
     private bool isChasing = false;
 
+        void Start()
+    {
+        rbd2 = GetComponent<Rigidbody2D>();
+        anim = GetComponent<Animator>(); 
+    }
+
+    private void AnimationControlers_Enemy()
+    {
+        anim.SetFloat("X_Velocity", rbd2.linearVelocityX);
+    }
+
     void Update()
     {
+        AnimationControlers_Enemy();
         // Detecta se o player está no raio de detecção
         isChasing = Physics2D.OverlapCircle(transform.position, detectionRadius, whatIsPlayer);
 
