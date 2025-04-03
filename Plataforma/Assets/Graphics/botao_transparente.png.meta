@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      botao_transparente_0: 5981349064927959095
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

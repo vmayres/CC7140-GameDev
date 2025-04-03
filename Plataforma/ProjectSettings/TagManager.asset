@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Coins
   - Goal
+  - Enemy
+  - DeadZones
   layers:
   - Default
   - TransparentFX
@@ -13,7 +15,7 @@ TagManager:
   - ground
   - Water
   - UI
-  - 
+  - Player
   - 
   - 
   - 

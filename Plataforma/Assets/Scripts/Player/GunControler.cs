@@ -4,11 +4,10 @@ using UnityEngine.InputSystem;
 
 public class GunControler : MonoBehaviour
 {
-
     [SerializeField] private Transform gun;
+    [SerializeField] private Transform gun_pos;
     [SerializeField] private Animator gun_anim;
     [SerializeField] private float gun_distance = 1.0f;
-    
 
     private bool gunFacingRight = true;
 
@@ -16,22 +15,28 @@ public class GunControler : MonoBehaviour
     [SerializeField] private GameObject bullet_Prefab;
     [SerializeField] private float bullet_Speed;
 
+    [Header("Gun Rotation Offset")]
+    [SerializeField] private float rotationOffsetY = 0.5f; // Ajuste este valor para definir o centro de rotação da arma
+
     void Update()
     {
-
         Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        Vector3 direction = mousePos - transform.position;
+        Vector3 direction = mousePos - gun_pos.position;
 
+        // Define o novo centro de rotação (acima do jogador)
+        Vector3 rotationCenter = transform.position + new Vector3(0, rotationOffsetY, 0);
+
+        // Rotaciona a arma na direção do mouse
         gun.rotation = Quaternion.Euler(new Vector3(0, 0, Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg));
 
+        // Calcula a posição da arma baseada no novo centro de rotação
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-        gun.position = transform.position + Quaternion.Euler(0, 0, angle) * new Vector3(gun_distance, 0, 0);
+        gun.position = rotationCenter + Quaternion.Euler(0, 0, angle) * new Vector3(gun_distance, 0, 0);
 
         GunFlipControler(mousePos);
 
         if (Input.GetKeyDown(KeyCode.Mouse0))
             Shoot(direction);
-
     }
 
     private void GunFlipControler(Vector3 mousePos)
@@ -52,9 +57,12 @@ public class GunControler : MonoBehaviour
     {
         gun_anim.SetTrigger("Shoot");
 
-        GameObject new_bullet = Instantiate(bullet_Prefab, gun.position, Quaternion.identity);
-        new_bullet.GetComponent<Rigidbody2D>().linearVelocity = direction.normalized * bullet_Speed;
-        Destroy(new_bullet, 5);
-    }
+        // Normaliza a direção para garantir velocidade constante
+        direction = direction.normalized;
 
+        GameObject new_bullet = Instantiate(bullet_Prefab, gun.position, Quaternion.identity);
+        new_bullet.GetComponent<Rigidbody2D>().linearVelocity = direction * bullet_Speed; 
+
+        Destroy(new_bullet, 5);
+}
 }
