@@ -1,31 +1,29 @@
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class CoinsScript : MonoBehaviour
 {
-    private ScoreManager scoreManager;
+    private GameManager gameManager;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        // Pega a instância do GameManager no início
+        gameManager = GameManager.Instance;
     }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Player"))
         {
-            Destroy(gameObject);
-            if (scoreManager != null)
+            if (gameManager != null)
             {
-                scoreManager.IncrementarPontuacao();
+                gameManager.IncrementarPontuacao();
             }
+            else
+            {
+                Debug.LogWarning("GameManager não encontrado!");
+            }
+
+            Destroy(gameObject); // Destroi a moeda
         }
     }
 }

@@ -5,21 +5,31 @@ public class MoveControler : MonoBehaviour
     public Rigidbody2D rbd2;
     private Animator anim;
 
-    [SerializeField] private float moveSpeed;
-    [SerializeField] private float jumpForce;
+    [SerializeField] private float moveSpeed = 5f;
+    [SerializeField] private float jumpForce = 10f;
     private float xinput;
     private bool IsGrounded;
     private bool facingRight = true;
 
     [Header("Collision Check")]
     [SerializeField] private Transform groundCheck;
-    [SerializeField] private float groundCheckRadius;
+    [SerializeField] private float groundCheckRadius = 0.2f;
     [SerializeField] private LayerMask whatIsGround;
+
+    [Header("GameManager Config")]
+    [SerializeField] private GameObject gameManagerPrefab; // Prefab do GameManager, para instanciar se n�o existir
 
     void Start()
     {
+        // Garante que o GameManager exista na cena
+        if (GameManager.Instance == null && gameManagerPrefab != null)
+        {
+            Instantiate(gameManagerPrefab);
+            Debug.Log("GameManager instanciado pelo MoveControler.");
+        }
+
         rbd2 = GetComponent<Rigidbody2D>();
-        anim = GetComponent<Animator>(); 
+        anim = GetComponent<Animator>();
     }
 
     void Update()
@@ -27,7 +37,7 @@ public class MoveControler : MonoBehaviour
         AnimationControlers();
         CollisionChecks();
         Andar();
-        FlipChecks(); // Agora verifica primeiro o movimento, depois o mouse
+        FlipChecks();
 
         if (Input.GetKeyDown(KeyCode.Space))
             Pular();
@@ -39,21 +49,21 @@ public class MoveControler : MonoBehaviour
     private void AnimationControlers()
     {
         anim.SetBool("IsGrounded", IsGrounded);
-        anim.SetFloat("X_Velocity", rbd2.linearVelocityX);
-        anim.SetFloat("Y_Velocity", rbd2.linearVelocityY);
+        anim.SetFloat("X_Velocity", rbd2.linearVelocity.x);
+        anim.SetFloat("Y_Velocity", rbd2.linearVelocity.y);
     }
 
     private void Andar()
     {
         xinput = Input.GetAxis("Horizontal");
-        rbd2.linearVelocityX = moveSpeed * xinput;
+        rbd2.linearVelocity = new Vector2(moveSpeed * xinput, rbd2.linearVelocity.y);
     }
 
     private void Pular()
     {
         if (IsGrounded)
         {
-            rbd2.linearVelocityY = jumpForce;
+            rbd2.linearVelocity = new Vector2(rbd2.linearVelocity.x, jumpForce);
         }
     }
 
@@ -65,16 +75,15 @@ public class MoveControler : MonoBehaviour
 
     private void FlipChecks()
     {
-        // Prioriza o movimento do player antes do mouse
-        if (xinput < 0 && facingRight) 
+        if (xinput < 0 && facingRight)
         {
             Flip();
         }
-        else if (xinput > 0 && !facingRight) 
+        else if (xinput > 0 && !facingRight)
         {
             Flip();
         }
-        else if (xinput == 0) // Se o player estiver parado, ele segue o mouse
+        else if (xinput == 0)
         {
             Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             if (mousePos.x < transform.position.x && facingRight) { Flip(); }
@@ -87,8 +96,29 @@ public class MoveControler : MonoBehaviour
         IsGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, whatIsGround);
     }
 
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("Enemy"))
+        {
+            Destroy(other.gameObject); // Destroi o inimigo
+
+            if (GameManager.Instance != null)
+            {
+                GameManager.Instance.PerderVida(); // Perde uma vida
+            }
+            else
+            {
+                Debug.LogWarning("GameManager n�o encontrado!");
+            }
+        }
+    }
+
     private void OnDrawGizmos()
     {
-        Gizmos.DrawWireSphere(groundCheck.position, groundCheckRadius);
+        if (groundCheck != null)
+        {
+            Gizmos.color = Color.red;
+            Gizmos.DrawWireSphere(groundCheck.position, groundCheckRadius);
+        }
     }
 }
