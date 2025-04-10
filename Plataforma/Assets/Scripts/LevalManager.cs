@@ -5,6 +5,7 @@ public class LevalManager : MonoBehaviour
 {
     public GameObject coletaveis;
     public GameObject objetivo;
+    public GameObject dialogo;
     public TextMeshProUGUI statusText;
 
     [Header("Se precisar iniciar o GameManager")]
@@ -39,6 +40,7 @@ public class LevalManager : MonoBehaviour
         if (moedasRestantes == 0 && !objetivo.activeSelf)
         {
             objetivo.SetActive(true);
+            dialogo.SetActive(false);
             Debug.Log("Todas as moedas coletadas! Objetivo ativado.");
         }
     }
